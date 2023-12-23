@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Khám và điều trị",
+    "path": "Kham-va-dieu-tri",
+    "description": "Chuẩn đoán và điều trị hiệu quả các bệnh về hệ hô hấp, hệ tiêu hóa, hệ tuần hoàn, tiết niệu, sinh dục, lông da, xương khớp, các bệnh về mắt và tai"
+  },
+  {
+    "title": "Xét nghiệm - Chẩn đoán hình ảnh",
+    "path": "Xet-nghiem-chan-doan-hinh-anh",
+    "description": "Các phương pháp chẩn đoán hình ảnh hoặc làm xét nghiệm: Siêu âm, X-Quang, Xét nghiệm máu, virus, nước tiểu, da, kháng sinh đồ..."
+  },
+  {
+    "title": "Phẫu thuật",
+    "path": "Phau-thuat",
+    "description": "Bệnh Viện Thú Y PetCare cung cấp dịch vụ Phẫu thuật theo yêu cầu: triệt sản, cắt đuôi và Phẫu thuật điều trị: nối xương, sỏi niệu, mổ bướu.."
+  },
+  {
+    "title": "Phòng chống kí sinh trùng - Tiêm phòng",
+    "path": "Phong-chong-ki-sinh-trung-tiem-phong",
+    "description": "Để đảm bảo sức khỏe cho người và vật nuôi, thú cưng cần được tiêm phòng và tái chủng định kì theo hướng dẫn của bác sĩ"
+  },
+  {
+    "title": "Chăm sóc răng miệng",
+    "path": "Cham-soc-rang-mieng",
+    "description": "Để phòng ngừa bệnh và hạn chế các tổn thương cho vật nuôi do vệ sinh chưa đúng cách, PetCare cung cấp dịch vụ chăm sóc răng miệng."
+  },
+  {
+    "title": "Thẩm mỹ",
+    "path": "Tham-my",
+    "description": "Viện thẩm mỹ ở PetCare cung cấp dịch vụ chăm sóc da lông vật nuôi theo yêu cầu của quý khách như tắm khô, tắm ướt, chải xù, cắt lông tạo kiểu và cắt móng."
+  },
+  {
+    "title": "Dịch vụ xuất cảnh chó mèo",
+    "path": "Xuat-canh-cho-meo",
+    "description": "PetCare có đội ngũ nhân viên giàu kinh nghiệm giúp chủ nuôi gửi thú cưng đi nước ngoài hay cùng đi du lịch."
+  },
+  {
+    "title": "Dịch vụ lưu chuồng",
+    "path": "Luu-chuong",
+    "description": "Petcare áp dụng quy trình lưu giữ thú cưng khoa học, đảm bảo cho thú cưng nhà bạn sống trong môi trường an toàn và sạch sẽ."
+  },
+  {
+    "title": "Vận chuyển - Khám bệnh tại nhà",
+    "path": "Van-chuyen-kham-benh-tai-nha",
+    "description": "Chúng tôi cung cấp dịch vụ khám chữa bệnh tại nhà và vận chuyển thú cưng từ nhà quý khách đến PetCare và ngược lại."
+  },
+  {
+    "title": "Dịch vụ cấp cứu 24/7",
+    "path": "Cap-cuu",
+    "description": "PetCare cung cấp dịch vụ cấp cứu 24/7, kể cả ngày lễ. Trường hợp cấp cứu sau 19h xin vui lòng liên hệ trước và mang thú cưng tới bệnh viện PetCare 1."
+  }
+]
