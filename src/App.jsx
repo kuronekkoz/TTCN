@@ -10,12 +10,13 @@ import AppointmentPage from "./pages/AppointmentPage";
 import ContactPage from "./pages/ContactPage";
 import IntroducePage from "./pages/IntroducePage";
 import Header from "./components/layout/Header";
+import SignIn from "./dashboard/SignIn";
 // import Dashboard from "dashboard/Dashboard";
 
 function App() {
   return (
     <Fragment>
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Main></Main>}>
           <Route index element={<HomePage></HomePage>}></Route>
           <Route path="Dat-lich-kham" element={<AppointmentPage />}></Route>
@@ -23,11 +24,11 @@ function App() {
           <Route path="Gioi-thieu" element={<IntroducePage />}></Route>
           <Route path="Dich-vu" element={<ServicePage />}></Route>
         </Route>
-      </Routes>
+      </Routes> */}
 
       {/* <DropDown></DropDown> */}
       {/* <Header></Header> */}
-
+      <SignIn></SignIn>
       {/* <DichVuPage></DichVuPage> */}
       {/* <Dashboard></Dashboard> */}
       {/* <CustomDatePicker></CustomDatePicker> */}
