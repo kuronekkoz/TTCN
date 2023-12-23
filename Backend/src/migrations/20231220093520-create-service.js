@@ -34,7 +34,6 @@ module.exports = {
 				type: Sequelize.INTEGER,
 			},
 			updatedBy: {
-				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
 		});

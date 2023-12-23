@@ -4,7 +4,7 @@ import tokenMiddleware from '../middleware/tokenMiddleware';
 
 const router = express.Router();
 
-router.post('/register', authController.handlecreateNewAccount);
+
 
 router.post('/login', authController.handleLogin);
 

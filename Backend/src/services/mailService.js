@@ -19,7 +19,7 @@ const sendMail = async (dataSent, toUser) => {
 				service: 'gmail',
 				auth: {
 					type: 'OAuth2',
-					user: 'anbadao12345@gmail.com',
+					user: 'nktoan1905@gmail.com',
 					clientId: CLIENT_ID,
 					clientSecret: CLIENT_SECRET,
 					refreshToken: REDIRECT_TOKEN,
@@ -30,14 +30,13 @@ const sendMail = async (dataSent, toUser) => {
 				},
 			});
 			let info = await transport.sendMail({
-				from: `"Booking Tour 👻" <anbadao12345@gmail.com>`, // sender address
+				from: `"Booking Tour 👻" <nktoan1905@gmail.com>`, // sender address
 				to: toUser, // list of receivers
 				subject: dataSent.subject, // Subject line
 				html: dataSent.body, // html body
 			});
 			resolve({ status: true, message: 'Sent mail successfully' });
 		} catch (error) {
-			console.log(error);
 			reject(error);
 		}
 	});

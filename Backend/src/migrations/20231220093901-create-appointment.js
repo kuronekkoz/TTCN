@@ -45,7 +45,6 @@ module.exports = {
 				type: Sequelize.DATE,
 			},
 			updatedBy: {
-				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
 		});

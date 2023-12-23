@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
-			Service.hasMany(models.Appointment, { foreignKey: 'servicedId', targetKey: 'id' });
+			Service.hasMany(models.Appointment, { foreignKey: 'serviceId', targetKey: 'id' });
 			Service.belongsTo(models.Account, { as: 'servicesCreatedBy', foreignKey: 'createdBy' });
 			Service.belongsTo(models.Account, { as: 'servicesUpdatedBy', foreignKey: 'updatedBy' });
 		}
