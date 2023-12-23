@@ -11,9 +11,9 @@ let initRoutes = (app) => {
 	});
 
 	app.use('/v1/auth', authRoute);
-	app.use('/v1/employee', employeeRoute);
-	app.use('/v1/service', serviceRoute);
-	app.use('/v1/appointment', appointmentRoute);
+	// app.use('/v1/employee', employeeRoute);
+	// app.use('/v1/service', serviceRoute);
+	// app.use('/v1/appointment', appointmentRoute);
 	return app.use('/', router);
 };
 

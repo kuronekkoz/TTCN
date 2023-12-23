@@ -9,7 +9,7 @@ module.exports = {
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			name: {
+			fullName: {
 				type: Sequelize.STRING,
 			},
 			address: {
@@ -27,10 +27,13 @@ module.exports = {
 			appointmentTime: {
 				type: Sequelize.DATE,
 			},
-			service: {
-				type: Sequelize.STRING,
+			serviceId: {
+				type: Sequelize.INTEGER,
 			},
 			status: {
+				type: Sequelize.BOOLEAN,
+			},
+			isComming: {
 				type: Sequelize.BOOLEAN,
 			},
 			createdAt: {
@@ -40,6 +43,10 @@ module.exports = {
 			updatedAt: {
 				allowNull: false,
 				type: Sequelize.DATE,
+			},
+			updatedBy: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
 			},
 		});
 	},

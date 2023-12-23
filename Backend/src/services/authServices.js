@@ -26,7 +26,7 @@ const authServices = {
 					});
 				}
 				let hashed = await bcrypt.hash(data.password, salt);
-				let newUser = await db.Account.create({ username: data.username, password: hashed, role: 2 });
+				let newUser = await db.Account.create({ username: data.username, password: hashed, role: 2, status: true });
 				resolve({ status: true, message: 'Create new account successfully', data: newUser });
 			} catch (error) {
 				reject(error);
@@ -51,17 +51,17 @@ const authServices = {
 				let account = await db.Account.findOne({
 					where: { username: data.username },
 				});
-				if (account == null) {
+				if (account == null || account.status === Number(false)) {
 					resolve({
 						status: false,
-						message: 'Username not exist',
+						message: 'Wrong username or password',
 					});
 				}
 				let checkPassword = await bcrypt.compare(data.password, account.password);
 				if (!checkPassword) {
 					resolve({
 						status: false,
-						message: 'Wrong password',
+						message: 'Wrong username or password',
 					});
 				}
 				resolve({
