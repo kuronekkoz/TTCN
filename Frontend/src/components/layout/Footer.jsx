@@ -16,28 +16,31 @@ const Footer = () => {
           chứng chỉ ISO 17025.
         </div>
       </div>
-      <div className="flex flex-col w-1/3  ">
-        <h2>THÔNG TIN LIÊN HỆ</h2>
+      <div className="flex flex-col w-1/3">
+        <h2 className="text-2xl">THÔNG TIN LIÊN HỆ</h2>
         <ul className="text-left pl-16 space-y-1 text-lg">
-          <li>các ca làm việc:</li>
-          <li className="ml-3">
-            <p>
-              Thứ 2 - thứ 7
-              <br />
-              &emsp;08:00 - 12:00
-              <br />
-              &emsp;14:00 - 19:00
-            </p>
-            <p>
-              Chủ nhật & ngày lễ
-              <br />
-              &emsp;08:00-12:00
-            </p>
+          <li>
+            Các ca làm việc:
+            <li className="ml-3">
+              <div>
+                <span>Thứ 2 - thứ 7</span>
+                <br />
+                <span className="ml-3">08:00 - 12:00</span>
+                <br />
+                <span className="ml-3">14:00 - 19:00</span>
+              </div>
+              <div>
+                <span>Chủ nhật & ngày lễ</span>
+                <br />
+                <span className="ml-3">08:00 - 12:00</span>
+              </div>
+            </li>
           </li>
-          <li>sđt: 0918 271 246 </li>
-          <li>email: petcarecentre@gmail.com</li>
-          <li>hotline: 0918 271 246</li>
-          <li>cấp cứu 24/24: 0918 271 246</li>
+
+          <li>Số điện thoại: 0918 271 246 </li>
+          <li>Email: petcarecentre@gmail.com</li>
+          <li>Hotline: 0918 271 246</li>
+          <li>Cấp cứu 24/24: 0918 271 246</li>
           <li>Địa chỉ:</li>
         </ul>
       </div>
