@@ -2,7 +2,7 @@ import db from '../models/index';
 
 // CRUD
 const serviceServices = {
-	createService: async (data) => {
+	createService: async (data, user) => {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const services = await db.Service.findOne({ where: { name: data.name } });
@@ -10,6 +10,9 @@ const serviceServices = {
 					let newService = await db.Service.create({
 						name: data.name,
 						description: data.description,
+						content: data.content,
+						status: true,
+						createdBy: user.id,
 					});
 					if (newService) {
 						resolve({ status: true, message: 'Create new service successfully!' });
@@ -24,11 +27,28 @@ const serviceServices = {
 			}
 		});
 	},
-	getAllService: async () => {
+	getAllServiceBystatus: async (status) => {
 		return new Promise(async (resolve, reject) => {
 			try {
-				let services = await db.Service.findAll({ atributes: ['id', 'name', 'description'] });
-				if (services.length < 0) {
+				let services = await db.Service.findAll({
+					where: { status: status },
+					attributes: ['id', 'name', 'description', 'content', 'status', 'createdBy', 'updatedBy'],
+					include: [
+						{
+							model: db.Account,
+							as: 'servicesCreatedBy',
+							attributes: ['username'],
+						},
+						{
+							model: db.Account,
+							as: 'servicesUpdatedBy',
+							attributes: ['username'],
+						},
+					],
+					raw: true,
+					nest: true,
+				});
+				if (services.length <= 0) {
 					resolve({ status: false, message: 'Get all services failed!' });
 				} else {
 					resolve({ status: true, message: 'Get all services successfully!', services: services });
@@ -39,14 +59,17 @@ const serviceServices = {
 			}
 		});
 	},
-	updateServiceById: async (serviceId, data) => {
+	updateServiceById: async (serviceId, data, user) => {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const isUpdate = await db.Service.update(
 					{
 						name: data.name,
 						description: data.description,
+						content: data.content,
+						status: data.status,
 						updatedAt: new Date(),
+						updatedBy: user.id,
 					},
 					{ where: { id: serviceId } },
 				);

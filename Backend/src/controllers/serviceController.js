@@ -4,7 +4,7 @@ import serviceServices from '../services/serviceServices';
 const serviceController = {
 	handleCreateService: async (req, res) => {
 		try {
-			const { status, message } = await serviceServices.createService(req.body);
+			const { status, message } = await serviceServices.createService(req.body, req.user);
 			if (status) {
 				res.status(HttpStatusCode.CREATED).json({ message: message });
 			} else {
@@ -16,7 +16,7 @@ const serviceController = {
 	},
 	handleGetAllService: async (req, res) => {
 		try {
-			const { status, message, services } = await serviceServices.getAllService();
+			const { status, message, services } = await serviceServices.getAllServiceBystatus(JSON.parse(req.query.status));
 			if (status) {
 				res.status(HttpStatusCode.OK).json({
 					message: message,
@@ -31,7 +31,7 @@ const serviceController = {
 	},
 	handleUpdateServiceId: async (req, res) => {
 		try {
-			const { status, message } = await serviceServices.updateServiceById(req.params.serviceId, req.body);
+			const { status, message } = await serviceServices.updateServiceById(req.params.serviceId, req.body, req.user);
 			if (status) {
 				res.status(HttpStatusCode.OK).json({ message });
 			} else {

@@ -5,34 +5,6 @@ import jwt from 'jsonwebtoken';
 const salt = bcrypt.genSaltSync(10);
 // CRUD
 const authServices = {
-	createNewAccount: async (data) => {
-		/**
-		 * data = {
-		 *  username,
-		 *  password
-		 * }
-		 */
-		return new Promise(async (resolve, reject) => {
-			try {
-				let usernameExist = await db.Account.findOne({
-					where: {
-						username: data.username,
-					},
-				});
-				if (usernameExist) {
-					return resolve({
-						status: false,
-						message: 'Username was already exist',
-					});
-				}
-				let hashed = await bcrypt.hash(data.password, salt);
-				let newUser = await db.Account.create({ username: data.username, password: hashed, role: 2 });
-				resolve({ status: true, message: 'Create new account successfully', data: newUser });
-			} catch (error) {
-				reject(error);
-			}
-		});
-	},
 	generateAccessToken: (user) => {
 		return jwt.sign(
 			{
@@ -51,17 +23,17 @@ const authServices = {
 				let account = await db.Account.findOne({
 					where: { username: data.username },
 				});
-				if (account == null) {
+				if (account == null || account.status === Number(false)) {
 					resolve({
 						status: false,
-						message: 'Username not exist',
+						message: 'Wrong username or password',
 					});
 				}
 				let checkPassword = await bcrypt.compare(data.password, account.password);
 				if (!checkPassword) {
 					resolve({
 						status: false,
-						message: 'Wrong password',
+						message: 'Wrong username or password',
 					});
 				}
 				resolve({

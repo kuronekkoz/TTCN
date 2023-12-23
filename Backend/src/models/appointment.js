@@ -9,18 +9,22 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
+			Appointment.belongsTo(models.Account, { as: 'accountInfo', foreignKey: 'updatedBy' });
+			Appointment.belongsTo(models.Service, { as: 'serviceInfo', foreignKey: 'serviceId' });
 		}
 	}
 	Appointment.init(
 		{
-			name: DataTypes.STRING,
+			fullName: DataTypes.STRING,
 			address: DataTypes.STRING,
 			phoneNumber: DataTypes.STRING,
 			email: DataTypes.STRING,
 			generic: DataTypes.STRING,
 			appointmentTime: DataTypes.DATE,
-			service: DataTypes.STRING,
+			serviceId: DataTypes.INTEGER,
 			status: DataTypes.BOOLEAN,
+			isComming: DataTypes.BOOLEAN,
+			updatedBy: DataTypes.INTEGER,
 		},
 		{
 			sequelize,

@@ -12,14 +12,13 @@ const tokenMiddleware = {
 					return res.status(HttpStatusCode.FORBIDDEN).json({ message: 'Token is not valid' });
 				}
 				const userDB = await db.Account.findOne({ where: { id: user.id } });
-				if (userDB) {
-					//gan them truong user them du lieu
+				if (userDB.status !== Number(false)) {
 					req.user = user;
 					next();
 				} else {
 					return res
 						.status(HttpStatusCode.NOT_ACCEPTABLE)
-						.json({ message: 'This account has been delete. Please contact with us' });
+						.json({ message: 'This account has been deleted. Please contact with us' });
 				}
 			});
 		} else {

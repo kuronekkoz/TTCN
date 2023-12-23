@@ -3,23 +3,7 @@ import authServices from '../services/authServices';
 import sendMail from '../services/mailService';
 
 const authController = {
-	handlecreateNewAccount: async (req, res) => {
-		try {
-			const { status, message, data } = await authServices.createNewAccount(req.body);
-			if (status) {
-				res.status(HttpStatusCode.OK).json({
-					message: message,
-					data: data,
-				});
-			} else {
-				res.status(HttpStatusCode.BAD_REQUEST).json({
-					message: message,
-				});
-			}
-		} catch (error) {
-			res.status(HttpStatusCode.BAD_REQUEST).json(error);
-		}
-	},
+
 	handleLogin: async (req, res) => {
 		try {
 			const { status, message, data } = await authServices.findAccountByUserNameAndPassword(req.body);

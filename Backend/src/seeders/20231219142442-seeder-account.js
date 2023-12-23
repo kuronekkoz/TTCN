@@ -19,6 +19,7 @@ module.exports = {
 					username: 'admin',
 					password: '$2b$10$0osu18U8XWmn/IYaZF205OhbIOJX18x8v2K64E5TeP8dSVFE1j3Pi',
 					role: '1',
+					status: true,
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				},

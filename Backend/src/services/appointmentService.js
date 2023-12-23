@@ -5,26 +5,23 @@ const appointmentServices = {
 	createAppointment: async (data) => {
 		return new Promise(async (resolve, reject) => {
 			try {
-				const appointments = await db.Appointment.findOne({ where: { name: data.name } });
-				if (!appointments) {
-					let newAppointment = await db.Appointment.create({
-						name: data.name,
-						address: data.address,
-						phoneNumber: data.phoneNumber,
-						email: data.email,
-						generic: data.generic,
-						appointmentTime: data.appointmentTime,
-						service: data.service,
-					});
-					if (newAppointment) {
-						resolve({ status: true, message: 'Create new appointment successfully!' });
-					} else {
-						resolve({ status: false, message: 'Create appointment failed!' });
-					}
+				let newAppointment = await db.Appointment.create({
+					fullName: data.fullName,
+					address: data.address,
+					phoneNumber: data.phoneNumber,
+					email: data.email,
+					generic: data.generic,
+					appointmentTime: data.appointmentTime,
+					serviceId: data.serviceId,
+					isComming: true,
+				});
+				if (newAppointment) {
+					resolve({ status: true, message: 'Create new appointment successfully!' });
 				} else {
-					resolve({ status: false, message: 'Appointment already exists!' });
+					resolve({ status: false, message: 'Create appointment failed!' });
 				}
 			} catch (error) {
+				console.log(error);
 				reject(error);
 			}
 		});
@@ -33,7 +30,31 @@ const appointmentServices = {
 		return new Promise(async (resolve, reject) => {
 			try {
 				let appointments = await db.Appointment.findAll({
-					atributes: ['id', 'name', 'address', 'phoneNumber', 'email', 'generic', 'appointmentsTime', 'service'],
+					atributes: [
+						'id',
+						'fullName',
+						'address',
+						'phoneNumber',
+						'email',
+						'generic',
+						'appointmentTime',
+						'serviceId',
+						'updatedBy',
+					],
+					include: [
+						{
+							model: db.Account,
+							as: 'accountInfo',
+							attributes: ['username'],
+						},
+						{
+							model: db.Service,
+							as: 'serviceInfo',
+							attributes: ['name'],
+						},
+					],
+					raw: true,
+					nest: true,
 				});
 				if (appointments.length < 0) {
 					resolve({ status: false, message: 'Get all appointments failed!' });
@@ -41,21 +62,28 @@ const appointmentServices = {
 					resolve({ status: true, message: 'Get all appointments successfully!', appointments: appointments });
 				}
 			} catch (error) {
+				console.log(error);
 				reject(error);
 			}
 		});
 	},
-	updateAppointmentById: async (appointmentId, data) => {
+	updateAppointmentById: async (appointmentId, data, user) => {
 		return new Promise(async (resolve, reject) => {
 			try {
+				console.log(appointmentId, data, user)
 				const isUpdate = await db.Appointment.update(
 					{
 						status: data.status,
+						isComming: data.isComming,
+						updatedAt: new Date(),
+						updatedBy: user.id,
 					},
 					{ where: { id: appointmentId } },
 				);
 				if (isUpdate) {
-					resolve({ status: true, message: 'Update appointment successfully!' });
+					const appointment = await db.Appointment.findOne({ where: { id: appointmentId } });
+
+					resolve({ status: true, message: 'Update appointment successfully!', data: appointment });
 				} else {
 					resolve({ status: false, message: 'Update appointment failed!' });
 				}
