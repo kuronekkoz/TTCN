@@ -4,7 +4,7 @@ import employeeServices from '../services/employeeServices';
 const employeeController = {
 	handleCreateEmloyee: async (req, res) => {
 		try {
-			const { status, message } = await employeeServices.createNewEmloyee(req.body);
+			const { status, message } = await employeeServices.createNewEmloyee(req.body, req.user);
 			if (status) {
 				res.status(HttpStatusCode.CREATED).json({ message: message });
 			} else {
@@ -31,7 +31,7 @@ const employeeController = {
 	},
 	handleUpdateEmloyee: async (req, res) => {
 		try {
-			const { status, message } = await employeeServices.updateEmloyeeById(req.params.employeeId, req.body);
+			const { status, message } = await employeeServices.updateEmloyeeById(req.params.employeeId, req.body, req.user);
 			if (status) {
 				res.status(HttpStatusCode.OK).json({ message });
 			} else {

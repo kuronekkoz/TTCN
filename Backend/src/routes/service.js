@@ -4,7 +4,7 @@ import roleMiddleware from '../middleware/roleMiddleware';
 
 const router = express.Router();
 // read
-router.get('/', roleMiddleware.verifyAdminOrEmployee, serviceController.handleGetAllService);
+router.get('/', serviceController.handleGetAllService);
 // create
 router.post('/register', roleMiddleware.verifyAdminOrEmployee, serviceController.handleCreateService);
 // update
