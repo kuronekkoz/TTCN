@@ -4,8 +4,6 @@ import tokenMiddleware from '../middleware/tokenMiddleware';
 
 const router = express.Router();
 
-
-
 router.post('/login', authController.handleLogin);
 
 router.get('/test', authController.handleTestSendMail);

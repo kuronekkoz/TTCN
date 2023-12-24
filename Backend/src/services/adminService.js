@@ -62,6 +62,21 @@ const adminServices = {
 			}
 		});
 	},
+	getAllAccountByRole: async (role) => {
+		return new Promise(async (resolve, reject) => {
+			
+			try {
+				const accounts = await db.Account.findAll({
+					where: {
+						role: role,
+					},
+				});
+				resolve({ status: true, message: 'Get all account successfully', accounts });
+			} catch (error) {
+				reject(error);
+			}
+		});
+	},
 };
 
 export default adminServices;

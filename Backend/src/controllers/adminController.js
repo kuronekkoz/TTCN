@@ -35,5 +35,16 @@ const adminController = {
 			res.status(HttpStatusCode.BAD_REQUEST).json(error);
 		}
 	},
+	handleGetAllAccountByRole: async (req, res) => {
+		try {
+			const { status, message, accounts } = await adminServices.getAllAccountByRole(2);
+			res.status(HttpStatusCode.OK).json({
+				message: message,
+				data: accounts,
+			});
+		} catch (error) {
+			res.status(HttpStatusCode.BAD_REQUEST).json(error);
+		}
+	},
 };
 export default adminController;

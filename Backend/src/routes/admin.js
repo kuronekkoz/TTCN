@@ -9,4 +9,6 @@ router.post('/register-account', roleMiddleware.verifyAdmin, adminController.han
 
 router.put('/change-status-account/:userId', roleMiddleware.verifyAdmin, adminController.handleChangeStatusAccount);
 
+router.get('/accounts', roleMiddleware.verifyAdmin, adminController.handleGetAllAccountByRole);
+
 export default router;

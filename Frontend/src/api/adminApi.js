@@ -13,6 +13,12 @@ const adminApi = {
       headers: { token: `Bearer ${accessToken}` },
     });
   },
+  getAllAccounts: (accessToken) => {
+    const url = `/v1/admin/accounts`;
+    return axiosClient.get(url, {
+      headers: { token: `Bearer ${accessToken}` },
+    });
+  },
 };
 
 export default adminApi;

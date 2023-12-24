@@ -11,6 +11,13 @@ import LayersIcon from "@mui/icons-material/Layers";
 import { NavLink } from "react-router-dom";
 
 const ListItems = () => {
+  const [userData, setUserData] = React.useState({});
+  React.useEffect(() => {
+    const storedUserData = localStorage.getItem("loginInfo");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+  }, []);
   return (
     <React.Fragment>
       <ListItemButton>
@@ -49,9 +56,13 @@ const ListItems = () => {
         <ListItemIcon>
           <LayersIcon />
         </ListItemIcon>
-        <NavLink to="/admin/account">
-          <ListItemText primary="Accounts" />
-        </NavLink>
+        {userData?.user?.role === 1 ? (
+          <NavLink to="/admin/account">
+            <ListItemText primary="Accounts" />
+          </NavLink>
+        ) : (
+          <React.Fragment></React.Fragment>
+        )}
       </ListItemButton>
     </React.Fragment>
   );
