@@ -45,18 +45,18 @@ const appointmentController = {
 				req.user,
 			);
 			if (status) {
-				if (req.body.status === true) {
+				if (req.body.status === 1) {
 					await sendMail(
 						{
 							subject: `Đồng ý yêu cầu của khách hàng ${data.fullName}`,
 							body: `<h3>Cảm ơn quý khách đã tin tưởng dịch vụ của chúng tôi</h3>
-							<h4>Chúng tôi sẽ đến địa chỉ ${data.address} vào lúc ${moment(data.appointmentTime).format('LLL')}</h4>
+							<h4>Xin mời bạn đến phòng khám của chúng tôi vào lúc ${moment(data.appointmentTime).format('LLL')}</h4>
 							`,
 						},
 						data.email,
 					);
 					res.status(HttpStatusCode.OK).json({ message });
-				} else if (req.body.status === false) {
+				} else if (req.body.status === 0) {
 					await sendMail(
 						{
 							subject: 'Từ chối dịch vụ',

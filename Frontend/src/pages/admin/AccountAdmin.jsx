@@ -178,7 +178,6 @@ export default function AccountAdmin() {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(status);
     try {
       const res = await adminApi.changeStatusAccount(
         selectedItemId.id,
@@ -255,7 +254,7 @@ export default function AccountAdmin() {
               count={rows.length}
               rowsPerPage={rowsPerPage}
               page={page}
-              selectProps={{
+              selectprops={{
                 inputProps: {
                   "aria-label": "rows per page",
                 },

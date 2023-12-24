@@ -13,12 +13,11 @@ import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import ListItems from "./ListItems";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import Board from "./Board";
 import { Outlet } from "react-router-dom";
+import ListItems from "./listItems";
 
 const drawerWidth = 240;
 
@@ -71,6 +70,15 @@ const defaultTheme = createTheme();
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+  const [userData, setUserData] = React.useState({});
+  React.useEffect(() => {
+    const storedUserData = localStorage.getItem("loginInfo");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    } else {
+      navigate("/login");
+    }
+  }, []);
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -129,8 +137,10 @@ export default function Dashboard() {
           <Divider />
           <List component="nav">
             <ListItems></ListItems>
-            <div className="">
-              <span>Xin chào user</span>
+            <div className="mt-4 flex justify-center items-center">
+              <span className="text-xl text-yellow-600">
+                Xin chào {userData?.user?.username}
+              </span>
             </div>
           </List>
         </Drawer>
