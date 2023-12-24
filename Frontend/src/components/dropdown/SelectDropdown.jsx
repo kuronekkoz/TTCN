@@ -1,4 +1,17 @@
+import { useEffect, useState } from "react";
+import serviceApi from "../../api/serviceApi";
+
 const SelectDropdown = ({ register }) => {
+  const [services, setServices] = useState([]);
+  useEffect(() => {
+    const fecthData = async () => {
+      try {
+        const res = await serviceApi.getAllService(true);
+        setServices(res.data.data);
+      } catch (error) {}
+    };
+    fecthData();
+  }, []);
   return (
     <div>
       <label
@@ -12,20 +25,12 @@ const SelectDropdown = ({ register }) => {
         className="bg-gray-50 border border-gray-300 text-gray-900  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 space-y-5 boder cursor-pointer "
         {...register}
       >
-        <option selected>Chọn dịch vụ</option>
-        <option value="kham">Khám và điều trị</option>
-        <option value="xetNghiem"> Xét nghiệm - Chẩn đoán hình ảnh</option>
-        <option value="phauThuat">Phẫu thuật</option>
-        <option value="tiemPhong">
-          Phòng chống kí sinh trùng - tiêm phòng
-        </option>
-        <option value="rangmieng">Chăm sóc răng miệng</option>
-        <option value="thamMy">Thẩm mỹ</option>
-        <option value="xuatCanh">Dịch vụ xuất cảnh chó mèo</option>
-        <option value="luuChuong">Dịch vụ lưu chuồng</option>
-        <option value="vanChuyen">Vận chuyển - Khám bệnh tại nhà</option>
-
-        <option value="capCuu">Dịch vụ cấp cứu 24/7</option>
+        <option>Hãy chọn dịch vụ</option>
+        {services.map((item, index) => (
+          <option key={index} value={item.id}>
+            {item.name}
+          </option>
+        ))}
       </select>
     </div>
   );

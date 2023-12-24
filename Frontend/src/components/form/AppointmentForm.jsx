@@ -2,25 +2,21 @@ import { useEffect } from "react";
 import { Controller, useController, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import dayjs from "dayjs";
 // import axios from "axios";
 
 import SelectDropdown from "../dropdown/SelectDropdown";
 import CustomDatePicker from "../datePicker/CustomDatePicker";
+import appointmentApi from "../../api/appoimentApi";
+import { toast } from "react-toastify";
 
 // using react-hook-form
 
 const schemaValidation = Yup.object({
-  name: Yup.string()
-    .required("Please enter your first name")
-    .max(10, "Must be 10 characters or less"),
-
-  phoneNumber: Yup.string()
-    .required("Please enter your phone number")
-    .min(10, "Must be 10 characters"),
+  fullName: Yup.string().required("Please enter your first name"),
+  phoneNumber: Yup.string().required("Please enter your phone number"),
   address: Yup.string().required("Please enter your address"),
-
   email: Yup.string().email().required("Please enter your email"),
-
   generic: Yup.string().required("Please enter your pet's generic"),
 });
 
@@ -28,7 +24,7 @@ const AppointmentForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, isValid, isDirty, dirtyFields },
+    formState: { errors, isSubmitting },
     watch,
     reset,
     resetField,
@@ -37,10 +33,15 @@ const AppointmentForm = () => {
     control,
   } = useForm({ resolver: yupResolver(schemaValidation), mode: "onChange" });
 
-  const selectedDate = watch("datePicker");
+  const selectedDate = watch("appointmentTime");
 
-  const onSubmit = (values) => {
-    console.log("onSubmit ~ values", typeof values.datePicker);
+  const onSubmit = async (values) => {
+    try {
+      const res = await appointmentApi.createAppointment(values);
+      toast.success("Đăng ký thành công");
+    } catch (error) {
+      toast.error("Đăng ký thất bại");
+    }
   };
   useEffect(() => {
     setFocus("firstName");
@@ -57,11 +58,10 @@ const AppointmentForm = () => {
           <label htmlFor="firstName">Họ và tên:</label>
           <input
             type="text"
-            id="name"
+            id="fullName"
             placeholder="Enter your name"
             className="p-4 rounded-md border border-gray-10 text-black  "
-            {...register("name")}
-            //defaultValue={}
+            {...register("fullName")}
           />
           {errors?.name && (
             <div className="text-red-500 text-sm ">{errors.name?.message}</div>
@@ -127,15 +127,15 @@ const AppointmentForm = () => {
         <label htmlFor="datepicker"> Chọn thời gian khám:</label>
 
         <CustomDatePicker
-          id="datePicker"
+          id="appointmentTime"
           selectedDate={selectedDate}
-          onChange={(date) => setValue("datePicker", date)}
+          onChange={(date) => setValue("appointmentTime", date)}
         ></CustomDatePicker>
       </div>
 
       <SelectDropdown
         id="dichVu"
-        register={register("dichVu")}
+        register={register("serviceId")}
       ></SelectDropdown>
       <div className=" flex justify-center items-center mt-10">
         <button

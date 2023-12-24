@@ -1,6 +1,20 @@
 import ProfileCard from "../components/items/ProfileCard";
 import items from "../components/data/employee.json";
+import { useEffect, useState } from "react";
+import employeeApi from "../api/employeeApi";
 const IntroducePage = () => {
+  const [employees, setEmployees] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await employeeApi.getAllEmployee();
+        setEmployees(res.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className="mb-32">
       <div className="mx-20">
@@ -55,7 +69,7 @@ const IntroducePage = () => {
         </div>
       </div>
       <div className="mt-20 container grid grid-cols-2 space-x-5 space-y-10">
-        {items.map((item, index) => (
+        {employees.map((item, index) => (
           <ProfileCard key={index} item={item} />
         ))}
       </div>
