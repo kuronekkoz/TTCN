@@ -13,12 +13,12 @@ import Badge from "@mui/material/Badge";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-
+import ListItems from "./ListItems";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import { mainListItems } from "./listItems";
 import Board from "./Board";
+import { Outlet } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -127,7 +127,12 @@ export default function Dashboard() {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List component="nav">{mainListItems}</List>
+          <List component="nav">
+            <ListItems></ListItems>
+            <div className="">
+              <span>Xin chào user</span>
+            </div>
+          </List>
         </Drawer>
         <Box
           component="main"
@@ -147,7 +152,7 @@ export default function Dashboard() {
               {/* Recent Orders */}
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-                  <Board />
+                  <Outlet />
                 </Paper>
               </Grid>
             </Grid>

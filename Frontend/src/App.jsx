@@ -14,6 +14,12 @@ import SignIn from "./dashboard/SignIn";
 // import Dashboard from "dashboard/Dashboard";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import Dashboard from "./dashboard/Dashboard";
+import EmployeeAdmin from "./pages/admin/EmployeeAdmin";
+import AppointmentAdmin from "./pages/admin/AppointmentAdmin";
+import ServiceAdmin from "./pages/admin/ServiceAdmin";
+import AccountAdmin from "./pages/admin/AccountAdmin";
+import DashboardAdmin from "./pages/admin/DashboardAdmin";
 
 function App() {
   return (
@@ -27,6 +33,25 @@ function App() {
             <Route path="info" element={<IntroducePage />}></Route>
             <Route path="service" element={<ServicePage />}></Route>
             <Route path="dang-nhap" element={<SignIn></SignIn>}></Route>
+          </Route>
+          <Route path="/admin" element={<Dashboard></Dashboard>}>
+            <Route index element={<DashboardAdmin></DashboardAdmin>}></Route>
+            <Route
+              path="employee"
+              element={<EmployeeAdmin></EmployeeAdmin>}
+            ></Route>
+            <Route
+              path="appointment"
+              element={<AppointmentAdmin></AppointmentAdmin>}
+            ></Route>
+            <Route
+              path="service"
+              element={<ServiceAdmin></ServiceAdmin>}
+            ></Route>
+            <Route
+              path="account"
+              element={<AccountAdmin></AccountAdmin>}
+            ></Route>
           </Route>
         </Routes>
       </LocalizationProvider>
