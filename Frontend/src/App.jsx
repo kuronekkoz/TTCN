@@ -32,7 +32,7 @@ function App() {
             <Route path="contact" element={<ContactPage />}></Route>
             <Route path="info" element={<IntroducePage />}></Route>
             <Route path="service" element={<ServicePage />}></Route>
-            <Route path="dang-nhap" element={<SignIn></SignIn>}></Route>
+            <Route path="login" element={<SignIn></SignIn>}></Route>
           </Route>
           <Route path="/admin" element={<Dashboard></Dashboard>}>
             <Route index element={<DashboardAdmin></DashboardAdmin>}></Route>

@@ -12,30 +12,32 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    ></Typography>
-  );
-}
+import authApi from "../api/authApi";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 // TODO remove, this demo shouldn't need to reset the theme.
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
+    const account = {
+      username: data.get("username"),
       password: data.get("password"),
-    });
+    };
+    try {
+      const res = await authApi.login(account);
+      localStorage.setItem("loginInfo", JSON.stringify(res.data.data));
+      toast.success("Đăng nhập thành công");
+      navigate("/admin/");
+    } catch (error) {
+      console.log(error);
+      toast.error("Đăng nhập thất bại");
+    }
   };
 
   return (
@@ -66,10 +68,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="userName"
-              label="User Name"
-              name="userName"
-              autoComplete="userName"
+              id="username"
+              label="User name"
+              name="username"
+              autoComplete="username"
               autoFocus
             />
             <TextField
@@ -81,10 +83,6 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
