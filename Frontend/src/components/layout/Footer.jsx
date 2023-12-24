@@ -1,7 +1,7 @@
 const Footer = () => {
   return (
     <footer className="bg-gray-800 py-8 text-white text-center flex flex-row ">
-      <div className="float flex-col w-1/3 ml-2">
+      <div className="float flex-col w-2/3 ml-2">
         <h2 className="text-left text-2xl text-green-400">
           BỆNH VIỆN THÚ Y Pet Care Center
         </h2>
@@ -16,7 +16,7 @@ const Footer = () => {
           chứng chỉ ISO 17025.
         </div>
       </div>
-      <div className="flex flex-col w-1/3">
+      <div className="flex flex-col w-1/3 justify-center">
         <h2 className="text-2xl">THÔNG TIN LIÊN HỆ</h2>
         <ul className="text-left pl-16 space-y-1 text-lg">
           <li>
