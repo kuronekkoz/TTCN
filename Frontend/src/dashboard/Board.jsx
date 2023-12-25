@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -7,8 +7,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
-function createData(id, name, email, sdt, time, dichVu) {
-  return { id, name, email, sdt, time, dichVu };
+function createData(id, name, email, sdt, time, generic, service) {
+  return { id, name, email, sdt, time, generic, service };
 }
 
 const rows = [
@@ -18,6 +18,7 @@ const rows = [
     "trinhviethoang@gmail.com",
     "0382751836",
     24,
+    "chihuahua",
     "xét nghiệm"
   ),
   createData(2, "Ice cream sandwich", 237, 9.0, 37, 4.3),
@@ -39,11 +40,12 @@ export default function Board() {
         <TableHead>
           <TableRow>
             <TableCell>Họ và tên</TableCell>
-            <TableCell align="right">email</TableCell>
-            <TableCell align="right">Số điện thoại</TableCell>
-            <TableCell align="right">Thời gian đặt khám</TableCell>
-            <TableCell align="right">Dịch vụ</TableCell>
-            <TableCell align="right">Action</TableCell>
+            <TableCell align="center">email</TableCell>
+            <TableCell align="center">Số điện thoại</TableCell>
+            <TableCell align="center">Thời gian đặt khám</TableCell>
+            <TableCell align="center">Chủng loại</TableCell>
+            <TableCell align="center">Dịch vụ</TableCell>
+            <TableCell align="center">Action</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -55,21 +57,20 @@ export default function Board() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-              <TableCell align="right">{row.sdt}</TableCell>
-              <TableCell align="right">{row.time}</TableCell>
-              <TableCell align="right">{row.dichVu}</TableCell>
+              <TableCell align="left">{row.email}</TableCell>
+              <TableCell align="left">{row.sdt}</TableCell>
+              <TableCell align="left">{row.time}</TableCell>
+              <TableCell align="left">{row.generic}</TableCell>
+              <TableCell align="left">{row.service}</TableCell>
               <TableCell align="right" className="cursor-pointer">
                 <button
-                  className="border bg-blue-500 text-white text-xl w-14 hover:bg-dark-blue"
+                  className="border bg-blue-500 text-white text-xl w-14 hover:bg-dark-blue ml-2"
                   onClick={() => handleOnClickOk(row.id)}
                 >
                   yes
                 </button>
-              </TableCell>
-              <TableCell align="left" className="cursor-pointer">
                 <button
-                  className="border bg-red-500 text-white text-xl  w-14"
+                  className="border bg-red-500 text-white text-xl w-14 ml-2 "
                   onClick={() => handleOnClickNo(row.id)}
                 >
                   no

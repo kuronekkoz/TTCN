@@ -1,12 +1,9 @@
-import * as React from "react";
+
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
+
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
@@ -84,6 +81,10 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8ffc82f1f8a3b95f575e42c4466ae3a8da5713d1
             <Button
               type="submit"
               fullWidth
