@@ -2,7 +2,7 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 const CustomDatePicker = ({ selectedDate, onChange }) => {
   return (
     <div className="relative max-w-lg ">
-      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+      <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none ">
         <svg
           className="w-4 h-4 text-gray-500 dark:text-gray-400"
           aria-hidden="true"
@@ -16,7 +16,7 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
       <DateTimePicker
         selected={selectedDate}
         onChange={onChange}
-        className="block w-full pl-10 pr-2.5 py-2.5 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
+        className="block w-full pl-10 pr-2.5 py-2.5 dark:bg-gray-700 dark:border-gray-600 cursor-pointer "
       />
     </div>
   );

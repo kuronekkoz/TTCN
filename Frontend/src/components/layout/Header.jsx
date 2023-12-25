@@ -10,29 +10,28 @@ const Header = () => {
           className="h-full w-1/2 ml-14 overflow-hidden"
         />
       </div>
-      <div className="flex space-x-4 mt-auto w-full pl-10">
-        <div className="flex flex-row w-5/6 pb-10 pt-10 ">
-          <ul className=" flex flex-row space-x-32 text-xl pb-10" id="header">
-            <li className="cursor-pointer text-white">
-              <NavLink to="/">Trang chủ</NavLink>
-            </li>
-            <li className="cursor-pointer text-white">
-              <NavLink to="/info">Giới thiệu </NavLink>
-            </li>
-            <li className="cursor-pointer text-white">
-              <NavLink to="/service">Dịch vụ</NavLink>
-            </li>
-            <li className="cursor-pointer text-white">
-              <NavLink to="/appointment">Đặt lịch khám</NavLink>
-            </li>
-            <li className="cursor-pointer text-white">
-              <NavLink to="/contact">Liên hệ</NavLink>
-            </li>
-            <li className="cursor-pointer text-white">
-              <NavLink to="/login">Đăng nhập</NavLink>
-            </li>
-          </ul>
-        </div>
+
+      <div className="flex flex-row w-5/6 pb-10 pt-10 ">
+        <ul className=" flex flex-row space-x-20 text-xl pb-10" id="header">
+          <li className="cursor-pointer text-white">
+            <NavLink to="/">Trang chủ</NavLink>
+          </li>
+          <li className="cursor-pointer text-white">
+            <NavLink to="/info">Giới thiệu </NavLink>
+          </li>
+          <li className="cursor-pointer text-white">
+            <NavLink to="/service">Dịch vụ</NavLink>
+          </li>
+          <li className="cursor-pointer text-white">
+            <NavLink to="/appointment">Đặt lịch khám</NavLink>
+          </li>
+          <li className="cursor-pointer text-white">
+            <NavLink to="/contact">Liên hệ</NavLink>
+          </li>
+          <li className="cursor-pointer text-white">
+            <NavLink to="/login">Đăng nhập</NavLink>
+          </li>
+        </ul>
       </div>
     </div>
   );
