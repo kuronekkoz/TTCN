@@ -10,7 +10,6 @@ const IntroducePage = () => {
         const res = await employeeApi.getAllEmployee();
         setEmployees(res.data.data);
       } catch (error) {
-        console.log(error);
       }
     };
     fetchData();

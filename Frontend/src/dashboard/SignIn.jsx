@@ -35,7 +35,6 @@ export default function SignIn() {
       toast.success("Đăng nhập thành công");
       navigate("/admin/");
     } catch (error) {
-      console.log(error);
       toast.error("Đăng nhập thất bại");
     }
   };

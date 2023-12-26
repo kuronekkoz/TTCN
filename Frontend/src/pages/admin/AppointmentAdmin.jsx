@@ -200,6 +200,13 @@ const AppointmentAdmin = () => {
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
           <TableRow>
+            <TableCell colSpan={13}>
+              <Button variant="contained" onClick={handleSortByDate}>
+                Sort by Date
+              </Button>
+            </TableCell>
+          </TableRow>
+          <TableRow>
             <TableCell>Id</TableCell>
             <TableCell>Họ và tên</TableCell>
             <TableCell>Địa chỉ</TableCell>
@@ -213,11 +220,6 @@ const AppointmentAdmin = () => {
             <TableCell>Được tạo lúc</TableCell>
             <TableCell>Cập nhật bởi</TableCell>
             <TableCell>Action</TableCell>
-            <TableCell>
-              <Button variant="contained" onClick={handleSortByDate}>
-                Sort by Date
-              </Button>
-            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

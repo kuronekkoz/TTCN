@@ -56,7 +56,7 @@ const employeeServices = {
 			try {
 				let isUpdate = await db.Employee.update(
 					{
-						name: data.name,
+						fullName: data.fullName,
 						description: data.description,
 						position: data.position,
 						image: data.image,

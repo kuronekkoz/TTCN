@@ -31,22 +31,17 @@ const EmployeeAdmin = () => {
   const [id, setId] = useState("");
   const [fullName, setFullName] = useState("");
   const [description, setDescription] = useState("");
-
+  let uploadedImage = "";
   const [image, setImage] = useState("");
   const [imageSelected, setImageSelected] = useState("");
-
   const [modalTitle, setModalTitle] = useState("");
-
   const loginInfo = JSON.parse(localStorage.getItem("loginInfo"));
 
   const fetchEmployeeList = async () => {
     try {
       const response = await employeeApi.getAllEmployee(true);
-      console.log(response);
       setEmployees(response.data?.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   //up ảnh
@@ -59,9 +54,8 @@ const EmployeeAdmin = () => {
   };
 
   const uploadImage = async () => {
-    var newImageLink;
-    if (employees.image) {
-      const publicId = getImagePublicId(employees.image);
+    if (image) {
+      const publicId = getImagePublicId(image);
       const cloudName = "dslkvtyoo";
       const timestamp = Math.round(new Date().getTime() / 1000);
       const apiKey = "889772846181156";
@@ -80,18 +74,23 @@ const EmployeeAdmin = () => {
     const formData = new FormData();
     formData.append("file", imageSelected);
     formData.append("upload_preset", "ayamv6kz");
-    await axios
-      .post(
-        "https://api.cloudinary.com/v1_1/dslkvtyoo/image/upload",
-        formData,
-        { params: { folder: "image" } }
-      )
-      .then((res) => {
-        newImageLink = res.data.url;
-        setImage(newImageLink);
-        console.log("img:", newImageLink);
-      });
-    await updateEmployee({ image: newImageLink });
+    const { imageLink } = await uploadImageToCloudinary(formData);
+    uploadedImage = imageLink;
+    // await updateEmployee({ image: newImageLink });
+  };
+  const uploadImageToCloudinary = async (formData) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const res = await axios.post(
+          "https://api.cloudinary.com/v1_1/dslkvtyoo/image/upload",
+          formData,
+          { params: { folder: "avatar" } }
+        );
+        resolve({ imageLink: res.data.url });
+      } catch (error) {
+        reject(error);
+      }
+    });
   };
 
   useEffect(() => {
@@ -100,10 +99,12 @@ const EmployeeAdmin = () => {
 
   const createEmployee = async () => {
     try {
+      await uploadImage();
       const response = await employeeApi.createEmployee(
-        { fullName, description, image },
+        { fullName: fullName, description: description, image: uploadedImage },
         loginInfo?.accessToken
       );
+      uploadedImage = "";
       // console.log(response);
       fetchEmployeeList();
     } catch (error) {
@@ -113,12 +114,13 @@ const EmployeeAdmin = () => {
 
   const updateEmployee = async () => {
     try {
+      await uploadImage();
       const response = await employeeApi.updateEmployee(
         id,
-        { fullName, description, image },
+        { fullName, description, image: uploadedImage },
         loginInfo?.accessToken
       );
-      console.log(response);
+      setId("");
       fetchEmployeeList();
     } catch (error) {
       console.log(error);
@@ -131,6 +133,7 @@ const EmployeeAdmin = () => {
         id,
         loginInfo?.accessToken
       );
+      setId("");
       console.log(response);
       fetchEmployeeList();
     } catch (error) {
@@ -212,8 +215,7 @@ const EmployeeAdmin = () => {
             setOpenEmployeeModal(true);
           }}
         >
-          {" "}
-          Thêm{" "}
+          Thêm
         </Button>
       </div>
       <TableContainer component={Paper}>
@@ -307,8 +309,8 @@ const EmployeeAdmin = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-
           <label htmlFor="">Ảnh</label>
+          {image ? <img src={image} /> : ""}
           <input
             type="file"
             className="text-center center-block file-upload"
@@ -320,17 +322,17 @@ const EmployeeAdmin = () => {
             sx={{ fontWeight: "bold", marginTop: "1rem" }}
             variant="contained"
             color="primary"
-            onClick={() => {
+            onClick={async () => {
               if (id === "") {
-                createEmployee();
+                await createEmployee();
                 closeEmployeeModals();
               } else {
-                updateEmployee();
+                await updateEmployee();
                 closeEmployeeModals();
               }
             }}
           >
-            Đăng kí
+            Lưu
           </Button>
         </Box>
       </Modal>
@@ -353,8 +355,7 @@ const EmployeeAdmin = () => {
               color="primary"
               onClick={() => closeEmployeeModals()}
             >
-              {" "}
-              No{" "}
+              No
             </Button>
             <Button
               sx={{ fontWeight: "bold", marginTop: "1rem" }}
@@ -365,8 +366,7 @@ const EmployeeAdmin = () => {
                 closeEmployeeModals();
               }}
             >
-              {" "}
-              Yes{" "}
+              Yes
             </Button>
           </div>
         </Box>
