@@ -98,7 +98,7 @@ const ServiceAdmin = () => {
           setOpenServiceModal(true);
         }}
       >
-        Edit
+        Chỉnh sửa
       </Button>
     );
   };
@@ -113,11 +113,10 @@ const ServiceAdmin = () => {
           setId(service.id);
           setName(service.name);
           setDescription(service.description);
-          setContent(service.content);
           setOpenDeleteServiceModal(true);
         }}
       >
-        Delete
+        Xóa
       </Button>
     );
   };
@@ -149,18 +148,18 @@ const ServiceAdmin = () => {
   return (
     <div>
       <div className="flex flex-row justify-between">
-        <div className="text-xl font-bold pb-4">Service Admin</div>
+        <div className="text-xl font-bold pb-4">Quản lý dịch vụ</div>
         <Button
           sx={{ fontWeight: "bold" }}
           variant="contained"
           color="primary"
           onClick={() => {
-            setModalTitle("Add Service");
+            setModalTitle("Thêm dịch vụ");
             setOpenServiceModal(true);
           }}
         >
           {" "}
-          Add{" "}
+          Thêm mới{" "}
         </Button>
       </div>
       <TableContainer component={Paper}>
@@ -177,26 +176,26 @@ const ServiceAdmin = () => {
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="left"
               >
-                Name
+                Tên
               </TableCell>
 
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="center"
               >
-                Description
+                Mô tả
               </TableCell>
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="center"
               >
-                Created By
+                Tạo bởi
               </TableCell>
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="center"
               >
-                Status
+                Trạng thái
               </TableCell>
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
@@ -237,24 +236,24 @@ const ServiceAdmin = () => {
             {modalTitle}
           </InputLabel>
           <TextField
-            label="Name"
+            label="Tên"
             variant="outlined"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <TextField
-            label="Description"
+            label="Mô tả"
             variant="outlined"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          <TextField
+          {/* <TextField
             label="Content"
             variant="outlined"
             value={content}
             onChange={(e) => setContent(e.target.value)}
             rows={4}
-          />
+          /> */}
           <Button
             sx={{ fontWeight: "bold", marginTop: "1rem" }}
             variant="contained"
@@ -269,7 +268,7 @@ const ServiceAdmin = () => {
               }
             }}
           >
-            Submit
+            Xác nhận
           </Button>
         </Box>
       </Modal>
@@ -283,7 +282,7 @@ const ServiceAdmin = () => {
       >
         <Box sx={modalStyle}>
           <Typography sx={{ typography: "subtitle1", fontWeight: "bold" }}>
-            Are you sure you want to delete service {id}?
+            Bạn có chắc muốn xóa dịch vụ {id} {name} ?
           </Typography>
           <div className="flex flex-row justify-around w-full">
             <Button

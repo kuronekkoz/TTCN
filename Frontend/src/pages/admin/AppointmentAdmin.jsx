@@ -192,17 +192,17 @@ const AppointmentAdmin = () => {
         <TableHead>
           <TableRow>
             <TableCell>Id</TableCell>
-            <TableCell>Full name</TableCell>
-            <TableCell>Address</TableCell>
-            <TableCell>Phone number</TableCell>
+            <TableCell>Họ và tên</TableCell>
+            <TableCell>Địa chỉ</TableCell>
+            <TableCell>Số điện thoại</TableCell>
             <TableCell>Email</TableCell>
-            <TableCell>Generic</TableCell>
-            <TableCell>Order Time</TableCell>
-            <TableCell>Service name</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Comming</TableCell>
-            <TableCell>Created at</TableCell>
-            <TableCell>Updated by</TableCell>
+            <TableCell>Chủng loại thú cưng</TableCell>
+            <TableCell>Thời gian đặt</TableCell>
+            <TableCell>Loại dịch vụ</TableCell>
+            <TableCell>Duyệt</TableCell>
+            <TableCell>Đến đúng lịch</TableCell>
+            <TableCell>Được tạo lúc</TableCell>
+            <TableCell>Cập nhật bởi</TableCell>
             <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
@@ -285,7 +285,7 @@ const AppointmentAdmin = () => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Change status</DialogTitle>
         <DialogContent>
-          <DialogContentText>Update status & comming</DialogContentText>
+          <DialogContentText>Cập nhật duyệt và đến </DialogContentText>
           <Box
             sx={{ minWidth: 500 }}
             component="form"
@@ -293,7 +293,7 @@ const AppointmentAdmin = () => {
             className="flex justify-center items-center mb-3"
           >
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Status</InputLabel>
+              <InputLabel id="demo-simple-select-label">Duyệt</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -301,13 +301,13 @@ const AppointmentAdmin = () => {
                 label="Status"
                 onChange={handleChangeStatus}
               >
-                <MenuItem value={1}>Active</MenuItem>
-                <MenuItem value={0}>Deactive</MenuItem>
+                <MenuItem value={1}>Có </MenuItem>
+                <MenuItem value={0}>Không</MenuItem>
               </Select>
             </FormControl>
             <DialogActions>
               <Button type="submit" variant="outlined">
-                Update
+                Cập nhật
               </Button>
             </DialogActions>
           </Box>
@@ -318,7 +318,7 @@ const AppointmentAdmin = () => {
             className="flex justify-center items-center"
           >
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Comming</InputLabel>
+              <InputLabel id="demo-simple-select-label">Đến không?</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -326,20 +326,20 @@ const AppointmentAdmin = () => {
                 label="Comming"
                 onChange={handleChangeComming}
               >
-                <MenuItem value={1}>Comming</MenuItem>
-                <MenuItem value={0}>No Comming</MenuItem>
+                <MenuItem value={1}>Có đến</MenuItem>
+                <MenuItem value={0}>Không đến</MenuItem>
               </Select>
             </FormControl>
             <DialogActions>
               <Button type="submit" variant="outlined">
-                update
+                Cập nhật
               </Button>
             </DialogActions>
           </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} variant="outlined">
-            Close
+            Đóng
           </Button>
         </DialogActions>
       </Dialog>

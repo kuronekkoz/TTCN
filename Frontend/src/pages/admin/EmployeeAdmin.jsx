@@ -101,7 +101,7 @@ const EmployeeAdmin = () => {
           setOpenEmployeeModal(true);
         }}
       >
-        Edit
+        Chỉnh sửa
       </Button>
     );
   };
@@ -119,7 +119,7 @@ const EmployeeAdmin = () => {
           setOpenDeleteEmployeeModal(true);
         }}
       >
-        Delete
+        Xóa
       </Button>
     );
   };
@@ -151,18 +151,18 @@ const EmployeeAdmin = () => {
   return (
     <div>
       <div className="flex flex-row justify-between">
-        <div className="text-xl font-bold pb-4">Employee Admin</div>
+        <div className="text-xl font-bold pb-4">Danh sách nhân viên</div>
         <Button
           sx={{ fontWeight: "bold" }}
           variant="contained"
           color="primary"
           onClick={() => {
-            setModalTitle("Add Service");
+            setModalTitle("Thêm nhân viên");
             setOpenEmployeeModal(true);
           }}
         >
           {" "}
-          Add{" "}
+          Thêm{" "}
         </Button>
       </div>
       <TableContainer component={Paper}>
@@ -179,31 +179,31 @@ const EmployeeAdmin = () => {
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="center"
               >
-                Full name
+                Họ và tên
               </TableCell>
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="center"
               >
-                Description
+                Mô tả
               </TableCell>
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="center"
               >
-                Image
+                Hình ảnh
               </TableCell>
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="center"
               >
-                Created By
+                Tạo bởi
               </TableCell>
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
                 align="center"
               >
-                Status
+                Hành động
               </TableCell>
               <TableCell
                 sx={{ typography: "subtitle1", fontWeight: "bold" }}
@@ -219,7 +219,9 @@ const EmployeeAdmin = () => {
                 <TableCell align="left">{row.id}</TableCell>
                 <TableCell align="left">{row.fullName}</TableCell>
                 <TableCell align="left">{row.description}</TableCell>
-                <TableCell align="left">{row.image}</TableCell>
+                <TableCell align="left">
+                  <img src={row.image} alt="" />
+                </TableCell>
                 <TableCell align="center">
                   {row.employeeCreatedBy?.username}
                 </TableCell>
@@ -243,20 +245,20 @@ const EmployeeAdmin = () => {
             {modalTitle}
           </InputLabel>
           <TextField
-            label="fullName"
+            label="Họ và tên"
             variant="outlined"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
           <TextField
-            label="Description"
+            label="Mô tả"
             variant="outlined"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
 
           <TextField
-            label="Image"
+            label="Ảnh"
             variant="outlined"
             value={image}
             onChange={(e) => setImage(e.target.value)}
@@ -276,7 +278,7 @@ const EmployeeAdmin = () => {
               }
             }}
           >
-            Submit
+            Đăng kí
           </Button>
         </Box>
       </Modal>
@@ -290,7 +292,7 @@ const EmployeeAdmin = () => {
       >
         <Box sx={modalStyle}>
           <Typography sx={{ typography: "subtitle1", fontWeight: "bold" }}>
-            Are you sure you want to delete employee {id}?
+            Bạn có chăc muốn xóa nhân viên {id}?
           </Typography>
           <div className="flex flex-row justify-around w-full">
             <Button

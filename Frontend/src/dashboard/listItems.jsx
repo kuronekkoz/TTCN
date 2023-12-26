@@ -28,45 +28,49 @@ const ListItems = () => {
   return (
     <React.Fragment>
       <ListItemButton>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <NavLink to="/admin/">
-          <ListItemText primary="Dashboard" />
+        <NavLink to="/admin/" className="flex">
+          <ListItemIcon>
+            <DashboardIcon />
+          </ListItemIcon>
+          <ListItemText primary="Dashboard" className="flex" />
         </NavLink>
       </ListItemButton>
       <ListItemButton>
-        <ListItemIcon>
-          <ShoppingCartIcon />
-        </ListItemIcon>
-        <NavLink to="/admin/appointment">
-          <ListItemText primary="Appointments" />
+        <NavLink to="/admin/appointment" className="flex">
+          <ListItemIcon>
+            <ShoppingCartIcon />
+          </ListItemIcon>
+          <ListItemText primary="Quản lí đơn đăng kí" />
         </NavLink>
       </ListItemButton>
+      {userData?.user?.role === 1 ? (
+        <ListItemButton>
+          <NavLink to="/admin/employee" className="flex">
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Quản lí nhân viên" />
+          </NavLink>
+        </ListItemButton>
+      ) : (
+        <React.Fragment></React.Fragment>
+      )}
       <ListItemButton>
-        <ListItemIcon>
-          <PeopleIcon />
-        </ListItemIcon>
-        <NavLink to="/admin/employee">
-          <ListItemText primary="Employees" />
-        </NavLink>
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <BarChartIcon />
-        </ListItemIcon>
-        <NavLink to="/admin/service">
-          <ListItemText primary="Services" />
+        <NavLink to="/admin/service" className="flex">
+          <ListItemIcon>
+            <BarChartIcon />
+          </ListItemIcon>
+          <ListItemText primary="Quản lí dịch vụ" />
         </NavLink>
       </ListItemButton>
       {userData?.user?.role === 1 ? (
         <ListItemButton>
           <React.Fragment>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <NavLink to="/admin/account">
-              <ListItemText primary="Accounts" />
+            <NavLink to="/admin/account" className="flex">
+              <ListItemIcon>
+                <LayersIcon />
+              </ListItemIcon>
+              <ListItemText primary="Tài khoản" />
             </NavLink>
           </React.Fragment>
         </ListItemButton>
@@ -77,7 +81,7 @@ const ListItems = () => {
         <ListItemIcon>
           <LogoutIcon />
         </ListItemIcon>
-        <ListItemText primary="Log out" onClick={handleOnClickLogout} />
+        <ListItemText primary="Đăng xuất" onClick={handleOnClickLogout} />
       </ListItemButton>
     </React.Fragment>
   );

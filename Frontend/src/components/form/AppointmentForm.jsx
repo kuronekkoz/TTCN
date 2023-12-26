@@ -59,7 +59,7 @@ const AppointmentForm = () => {
           <input
             type="text"
             id="fullName"
-            placeholder="Enter your name"
+            placeholder="Hãy nhập họ và tên của bạn"
             className="p-4 rounded-md border border-gray-10 text-black  "
             {...register("fullName")}
           />
@@ -73,7 +73,7 @@ const AppointmentForm = () => {
         <input
           type="text"
           id="phoneNumber"
-          placeholder="Enter your phone number"
+          placeholder="Hãy nhập số điện thoại"
           className="p-4 rounded-md border border-gray-100 text-black"
           {...register("phoneNumber")}
         />
@@ -88,7 +88,7 @@ const AppointmentForm = () => {
         <input
           type="text"
           id="address"
-          placeholder="Enter your address"
+          placeholder="Hãy nhập địa chỉ"
           className="p-4 rounded-md border border-gray-100 text-black"
           {...register("address")}
         />
@@ -101,7 +101,7 @@ const AppointmentForm = () => {
         <label htmlFor="email">email:</label>
         <MyInput
           name="email"
-          placeholder="Enter your email"
+          placeholder="Hãy nhập email"
           id="email"
           control={control}
         ></MyInput>
@@ -111,11 +111,11 @@ const AppointmentForm = () => {
       </div>
 
       <div className="flex flex-col gap-2 mb-5">
-        <label htmlFor="generic"> Chủng loại:</label>
+        <label htmlFor="generic"> Chủng loại thú cưng:</label>
         <input
           type="text"
           id="generic"
-          placeholder="Enter your pet's generic e.g: chó chihuahua,mèo mướp, ..."
+          placeholder="Hãy nhập chủng loại thú cưng: chó chihuahua,mèo mướp, ..."
           className="p-4 rounded-md border border-gray-100 text-black"
           {...register("generic")}
         />

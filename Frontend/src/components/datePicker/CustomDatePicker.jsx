@@ -16,7 +16,7 @@ const CustomDatePicker = ({ selectedDate, onChange }) => {
       <DateTimePicker
         selected={selectedDate}
         onChange={onChange}
-        className="block w-full pl-10 pr-2.5 py-2.5 dark:bg-gray-700 dark:border-gray-600 cursor-pointer"
+        className="block w-full text-white pl-10 pr-2.5 py-2.5 dark:bg-white dark:border-gray-600 cursor-pointer rounded-lg"
       />
     </div>
   );

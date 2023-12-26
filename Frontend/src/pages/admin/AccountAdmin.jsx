@@ -199,16 +199,16 @@ export default function AccountAdmin() {
           <TableRow>
             <TableCell colSpan={6}>
               <Button variant="outlined" onClick={handleClickOpenAdd}>
-                Add
+                Thêm
               </Button>
             </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Id</TableCell>
-            <TableCell>Username</TableCell>
-            <TableCell>Role</TableCell>
-            <TableCell>Status</TableCell>
-            <TableCell>Created at</TableCell>
+            <TableCell>Tên đăng nhập</TableCell>
+            <TableCell>role</TableCell>
+            <TableCell>Trạng thái</TableCell>
+            <TableCell>Được tạo lúc</TableCell>
             <TableCell>Action</TableCell>
           </TableRow>
         </TableHead>
@@ -235,7 +235,7 @@ export default function AccountAdmin() {
               </TableCell>
               <TableCell>
                 <Button variant="outlined" onClick={() => handleClickOpen(row)}>
-                  Edit
+                  Chỉnh sửa
                 </Button>
               </TableCell>
             </TableRow>
@@ -268,12 +268,12 @@ export default function AccountAdmin() {
         </TableFooter>
       </Table>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Change status</DialogTitle>
+        <DialogTitle>Thay đổi trạng thái</DialogTitle>
         <DialogContent>
-          <DialogContentText>Update status account</DialogContentText>
+          <DialogContentText>Cập nhật trạng thái tài khoản</DialogContentText>
           <Box sx={{ minWidth: 500 }} component="form" onSubmit={handleSubmit}>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Status</InputLabel>
+              <InputLabel id="demo-simple-select-label">Trạng thái</InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -294,9 +294,9 @@ export default function AccountAdmin() {
         </DialogContent>
       </Dialog>
       <Dialog open={openAdd} onClose={handleCloseAdd}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Đăng kí</DialogTitle>
         <DialogContent>
-          <DialogContentText>Create new account</DialogContentText>
+          <DialogContentText>Tạo tài khoản mới</DialogContentText>
           <Box
             component="form"
             onSubmit={handleSubmitAdd}
@@ -307,7 +307,7 @@ export default function AccountAdmin() {
               autoFocus
               margin="dense"
               id="username"
-              label="User Name"
+              label="Tên đăng nhập"
               type="text"
               name="username"
               fullWidth
@@ -317,14 +317,14 @@ export default function AccountAdmin() {
               autoFocus
               margin="dense"
               id="password"
-              label="Password"
+              label="Mật khẩu"
               name="password"
               type="password"
               fullWidth
               variant="standard"
             />
             <Button type="submit" variant="outlined">
-              Add
+              Thêm
             </Button>
           </Box>
         </DialogContent>
