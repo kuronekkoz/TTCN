@@ -1,11 +1,13 @@
 //EmployeeAdmin
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import employeeApi from "../../api/employeeApi";
 import Table from "@mui/material/Table";
 import {
   Box,
   Button,
+  Input,
   InputLabel,
   Modal,
   Paper,
@@ -18,6 +20,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import axios from "axios";
+import CryptoJS from "crypto-js";
 
 const EmployeeAdmin = () => {
   const [employees, setEmployees] = useState([]);
@@ -29,6 +33,8 @@ const EmployeeAdmin = () => {
   const [description, setDescription] = useState("");
 
   const [image, setImage] = useState("");
+  const [imageSelected, setImageSelected] = useState("");
+
   const [modalTitle, setModalTitle] = useState("");
 
   const loginInfo = JSON.parse(localStorage.getItem("loginInfo"));
@@ -43,6 +49,51 @@ const EmployeeAdmin = () => {
     }
   };
 
+  //up ảnh
+
+  const getImagePublicId = (imageLink) => {
+    const startIndex = imageLink.indexOf("/avatar/") + 1;
+    const endIndex = imageLink.lastIndexOf(".");
+    const result = imageLink.substring(startIndex, endIndex);
+    return result;
+  };
+
+  const uploadImage = async () => {
+    var newImageLink;
+    if (employees.image) {
+      const publicId = getImagePublicId(employees.image);
+      const cloudName = "dslkvtyoo";
+      const timestamp = Math.round(new Date().getTime() / 1000);
+      const apiKey = "889772846181156";
+      const apiSecret = "cGNMNOvdDG0mgYrFYLMl44hewFw";
+      const signature = CryptoJS.SHA1(
+        `public_id=${publicId}&timestamp=${timestamp}${apiSecret}`
+      ).toString();
+      const deleteUrl = `https://api.cloudinary.com/v1_1/${cloudName}/image/destroy`;
+      await axios.post(deleteUrl, {
+        public_id: publicId,
+        timestamp: timestamp,
+        api_key: apiKey,
+        signature: signature,
+      });
+    }
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset", "ayamv6kz");
+    await axios
+      .post(
+        "https://api.cloudinary.com/v1_1/dslkvtyoo/image/upload",
+        formData,
+        { params: { folder: "image" } }
+      )
+      .then((res) => {
+        newImageLink = res.data.url;
+        setImage(newImageLink);
+        console.log("img:", newImageLink);
+      });
+    await updateEmployee({ image: newImageLink });
+  };
+
   useEffect(() => {
     fetchEmployeeList();
   }, []);
@@ -53,7 +104,7 @@ const EmployeeAdmin = () => {
         { fullName, description, image },
         loginInfo?.accessToken
       );
-      console.log(response);
+      // console.log(response);
       fetchEmployeeList();
     } catch (error) {
       console.log(error);
@@ -62,7 +113,7 @@ const EmployeeAdmin = () => {
 
   const updateEmployee = async () => {
     try {
-      const response = await employeeApi.updateService(
+      const response = await employeeApi.updateEmployee(
         id,
         { fullName, description, image },
         loginInfo?.accessToken
@@ -93,7 +144,7 @@ const EmployeeAdmin = () => {
         variant="text"
         color="success"
         onClick={() => {
-          setModalTitle("Edit employee");
+          setModalTitle("Chỉnh sửa thông tin nhân viên");
           setId(employee.id);
           setFullName(employee.fullName);
           setDescription(employee.description);
@@ -112,7 +163,7 @@ const EmployeeAdmin = () => {
         variant="text"
         color="error"
         onClick={() => {
-          setModalTitle("Delete employee");
+          setModalTitle("Xóa nhân viên");
           setId(employee.id);
           setFullName(employee.fullName);
           setImage(employee.image);
@@ -257,11 +308,12 @@ const EmployeeAdmin = () => {
             onChange={(e) => setDescription(e.target.value)}
           />
 
-          <TextField
-            label="Ảnh"
-            variant="outlined"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+          <label htmlFor="">Ảnh</label>
+          <input
+            type="file"
+            className="text-center center-block file-upload"
+            placeholder="Chọn ảnh từ thiết bị"
+            onChange={(e) => setImageSelected(e.target.files[0])}
             rows={4}
           />
           <Button

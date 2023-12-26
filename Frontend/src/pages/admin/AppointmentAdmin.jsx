@@ -186,6 +186,15 @@ const AppointmentAdmin = () => {
   const handleChangeComming = (event) => {
     setComming(event.target.value);
   };
+
+  const handleSortByDate = () => {
+    // Create a new sorted array based on the 'appointmentTime' field
+    const sortedRows = [...rows].sort(
+      (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+    );
+    setRows(sortedRows);
+  };
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
@@ -204,6 +213,11 @@ const AppointmentAdmin = () => {
             <TableCell>Được tạo lúc</TableCell>
             <TableCell>Cập nhật bởi</TableCell>
             <TableCell>Action</TableCell>
+            <TableCell>
+              <Button variant="contained" onClick={handleSortByDate}>
+                Sort by Date
+              </Button>
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
