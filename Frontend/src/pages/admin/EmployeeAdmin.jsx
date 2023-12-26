@@ -176,6 +176,7 @@ const EmployeeAdmin = () => {
   };
 
   const closeEmployeeModals = () => {
+    setId("");
     setFullName("");
     setDescription("");
     setImage("");

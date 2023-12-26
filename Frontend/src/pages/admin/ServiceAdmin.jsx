@@ -122,6 +122,7 @@ const ServiceAdmin = () => {
   };
 
   const closeServiceModals = () => {
+    setId("");
     setName("");
     setDescription("");
     setContent("");

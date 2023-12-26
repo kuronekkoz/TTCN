@@ -50,7 +50,10 @@ const appointmentController = {
 						{
 							subject: `Đồng ý yêu cầu của khách hàng ${data.fullName}`,
 							body: `<h3>Cảm ơn quý khách đã tin tưởng dịch vụ của chúng tôi</h3>
-							<h4>Xin mời bạn đến phòng khám của chúng tôi vào lúc ${moment(data.appointmentTime).format('LLL')}</h4>
+							<h4>Xin mời bạn đến phòng khám của chúng tôi vào lúc ${moment(data.appointmentTime).format('LLL')}
+							</h4>
+							<h4>Mã phiếu: ${data.id}
+							</h4>
 							`,
 						},
 						data.email,
@@ -61,7 +64,7 @@ const appointmentController = {
 						{
 							subject: 'Từ chối dịch vụ',
 							body: `<h3>Cảm ơn quý khách đăng ký sử dụng dịch vụ của chúng tôi.</h3>
-							<h4>Chúng tôi xin lỗi vì chưa thể đáp ứng được nhu cầu của quý khách</h4>
+							<h4>Chúng tôi xin lỗi vì chưa thể đáp ứng được nhu cầu của quý khách do đã có khách hàng khác đặt trước trùng lịch </h4>
 							`,
 						},
 						data.email,

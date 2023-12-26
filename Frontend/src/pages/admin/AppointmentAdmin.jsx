@@ -190,8 +190,14 @@ const AppointmentAdmin = () => {
   const handleSortByDate = () => {
     // Create a new sorted array based on the 'appointmentTime' field
     const sortedRows = [...rows].sort(
-      (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
     );
+    setRows(sortedRows);
+  };
+
+  // Create a new sorted array based on the 'appointmentTime' field
+  const handleSortByStatus = () => {
+    const sortedRows = [...rows].sort((a, b) => a.status - b.status);
     setRows(sortedRows);
   };
 
@@ -199,6 +205,14 @@ const AppointmentAdmin = () => {
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
+          <div className="flex space-x-5">
+            <Button variant="contained" onClick={handleSortByDate}>
+              Sort by Date
+            </Button>
+            <Button variant="outlined" onClick={handleSortByStatus}>
+              Sort by Status
+            </Button>
+          </div>
           <TableRow>
             <TableCell>Id</TableCell>
             <TableCell>Họ và tên</TableCell>
@@ -213,11 +227,7 @@ const AppointmentAdmin = () => {
             <TableCell>Được tạo lúc</TableCell>
             <TableCell>Cập nhật bởi</TableCell>
             <TableCell>Action</TableCell>
-            <TableCell>
-              <Button variant="contained" onClick={handleSortByDate}>
-                Sort by Date
-              </Button>
-            </TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -251,10 +261,14 @@ const AppointmentAdmin = () => {
                 {row.serviceInfo.name}
               </TableCell>
               <TableCell component="th" scope="row">
-                {row.status}
+                {row.status === 1 ? "Duyệt" : row.status === 0 ? "Từ chối" : ""}
               </TableCell>
               <TableCell component="th" scope="row">
-                {row.isComming}
+                {row.isComming === 1
+                  ? "Đến"
+                  : row.status === 0
+                  ? "Không đến"
+                  : ""}
               </TableCell>
               <TableCell component="th" scope="row">
                 {dayjs(row.createdAt).format("LLLL")}
