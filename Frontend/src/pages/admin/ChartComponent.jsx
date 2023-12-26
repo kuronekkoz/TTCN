@@ -69,7 +69,7 @@ const ChartComponent = () => {
     switch (timeline) {
       case "one_month":
         newMinDate = new Date("30 Nov 2023").getTime();
-        newMaxDate = new Date("30 Sep 2023").getTime();
+        newMaxDate = new Date("30 Dec 2023").getTime();
         break;
       case "six_months":
         newMinDate = new Date("1 Jun 2023").getTime();
@@ -81,7 +81,7 @@ const ChartComponent = () => {
         break;
       case "ytd":
         newMinDate = new Date("01 Nov 2023").getTime();
-        newMaxDate = new Date("27 Sep 2023").getTime();
+        newMaxDate = new Date("30 Oct 2023").getTime();
         break;
       case "all":
         newMinDate = new Date("23 Jan 2023").getTime();
@@ -103,7 +103,6 @@ const ChartComponent = () => {
 
   const [options, setOptions] = useState({
     chart: {
-      id: "area-datetime",
       type: "line",
       height: 350,
       zoom: {
@@ -111,30 +110,32 @@ const ChartComponent = () => {
       },
     },
     // Rest of your options
-
+    stroke: {
+      curve: "straight",
+    },
     annotations: {
-      yaxis: [
-        {
-          y: 20,
-          borderColor: "#999",
-          label: {
-            show: true,
-            text: "Support",
-            style: {
-              color: "#fff",
-              background: "#00E396",
-            },
-          },
-        },
-      ],
+      // yaxis: [
+      //   {
+      //     y: 3,
+      //     borderColor: "#999",
+      //     label: {
+      //       show: true,
+      //       text: "Average",
+      //       style: {
+      //         color: "#fff",
+      //         background: "#00E396",
+      //       },
+      //     },
+      //   },
+      // ],
       xaxis: [
         {
-          x: new Date("14 Sep  2023").getTime(),
+          x: new Date("23 Dec  2023").getTime(),
           borderColor: "#999",
-          yAxisIndex: 0,
+          // yAxisIndex: 0,
           label: {
             show: true,
-            text: "Rally",
+            text: "Today",
             style: {
               color: "#fff",
               background: "#775DD0",
@@ -146,30 +147,30 @@ const ChartComponent = () => {
     dataLabels: {
       enabled: false,
     },
-    markers: {
-      size: 0,
-      style: "hollow",
-    },
+    // markers: {
+    //   size: 0,
+    //   style: "hollow",
+    // },
     xaxis: {
       type: "datetime",
-      min: new Date("01 Mar 2023").getTime(),
+      min: new Date("01 May 2023").getTime(),
       max: new Date("01 May 2024").getTime(),
       tickAmount: 6,
     },
-    tooltip: {
-      x: {
-        format: "dd MMM yyyy",
-      },
-    },
-    fill: {
-      type: "gradient",
-      gradient: {
-        shadeIntensity: 1,
-        opacityFrom: 0.7,
-        opacityTo: 0.9,
-        stops: [0, 100],
-      },
-    },
+    // tooltip: {
+    //   x: {
+    //     format: "dd MMM yyyy",
+    //   },
+    // },
+    // fill: {
+    //   type: "gradient",
+    //   gradient: {
+    //     shadeIntensity: 1,
+    //     opacityFrom: 0.7,
+    //     opacityTo: 0.9,
+    //     stops: [0, 100],
+    //   },
+    // },
   });
 
   console.log("series", series);

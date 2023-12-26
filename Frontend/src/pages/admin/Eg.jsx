@@ -8,6 +8,7 @@ const ChartEg = () => {
 
   const [options, setOptions] = useState({
     chart: {
+      id: "area-datetime",
       type: "line",
       height: 350,
     },
