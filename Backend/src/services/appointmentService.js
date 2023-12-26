@@ -13,7 +13,7 @@ const appointmentServices = {
 					generic: data.generic,
 					appointmentTime: data.appointmentTime,
 					serviceId: data.serviceId,
-					isComming: true,
+					isComming: false,
 				});
 				if (newAppointment) {
 					resolve({ status: true, message: 'Create new appointment successfully!' });
@@ -70,7 +70,7 @@ const appointmentServices = {
 	updateAppointmentById: async (appointmentId, data, user) => {
 		return new Promise(async (resolve, reject) => {
 			try {
-				console.log(appointmentId, data, user)
+				console.log(appointmentId, data, user);
 				const isUpdate = await db.Appointment.update(
 					{
 						status: data.status,

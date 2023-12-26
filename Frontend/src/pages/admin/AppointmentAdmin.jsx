@@ -25,7 +25,7 @@ import {
 import dayjs from "dayjs";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Dialog from "@mui/material/Dialog";
@@ -146,7 +146,7 @@ const AppointmentAdmin = () => {
       setUserData(JSON.parse(storedUserData));
       fecthApi(accessToken);
     } else {
-      navigate("/login");
+      Navigate("/login");
     }
   }, []);
 
@@ -197,22 +197,38 @@ const AppointmentAdmin = () => {
 
   // Create a new sorted array based on the 'appointmentTime' field
   const handleSortByStatus = () => {
-    const sortedRows = [...rows].sort((a, b) => a.status - b.status);
+    const sortedRows = [...rows].sort((a, b) => {
+      if (a.status === null && b.status !== null) {
+        return 1; // Place 'null' values after other values
+      } else if (a.status !== null && b.status === null) {
+        return -1; // Place 'null' values after other values
+      } else {
+        return b.status - a.status; // Sort '0' and '1' values
+      }
+    });
+    setRows(sortedRows);
+  };
+
+  const handleSortByComing = () => {
+    const sortedRows = [...rows].sort((a, b) => a.isComming - b.isComming);
     setRows(sortedRows);
   };
 
   return (
     <TableContainer component={Paper}>
+      <div className="flex space-x-5 h-12 ml-5 ">
+        <Button variant="contained" onClick={handleSortByDate}>
+          Sắp xếp theo ngày tạo
+        </Button>
+        <Button variant="outlined" onClick={handleSortByStatus}>
+          Sắp xếp theo trạng thái
+        </Button>
+        <Button variant="contained" onClick={handleSortByComing}>
+          Sắp xếp theo đến khám
+        </Button>
+      </div>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
-          <div className="flex space-x-5">
-            <Button variant="contained" onClick={handleSortByDate}>
-              Sort by Date
-            </Button>
-            <Button variant="outlined" onClick={handleSortByStatus}>
-              Sort by Status
-            </Button>
-          </div>
           <TableRow>
             <TableCell>Id</TableCell>
             <TableCell>Họ và tên</TableCell>
@@ -222,7 +238,7 @@ const AppointmentAdmin = () => {
             <TableCell>Chủng loại thú cưng</TableCell>
             <TableCell>Thời gian đặt</TableCell>
             <TableCell>Loại dịch vụ</TableCell>
-            <TableCell>Duyệt</TableCell>
+            <TableCell>Trạng thái</TableCell>
             <TableCell>Đến đúng lịch</TableCell>
             <TableCell>Được tạo lúc</TableCell>
             <TableCell>Cập nhật bởi</TableCell>

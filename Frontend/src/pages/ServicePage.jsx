@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import items from "../components/data/dichvu.json";
 import ServiceItems from "../components/items/ServiceItems";
 import serviceApi from "../api/serviceApi";
 const ServicePage = () => {

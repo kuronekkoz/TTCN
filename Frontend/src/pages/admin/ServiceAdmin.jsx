@@ -64,6 +64,7 @@ const ServiceAdmin = () => {
         { name, description, content },
         loginInfo?.accessToken
       );
+      setId("");
       console.log(response);
       fetchServiceList();
     } catch (error) {
@@ -77,6 +78,7 @@ const ServiceAdmin = () => {
         id,
         loginInfo?.accessToken
       );
+      setId("");
       console.log(response);
       fetchServiceList();
     } catch (error) {
@@ -248,13 +250,7 @@ const ServiceAdmin = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
-          {/* <TextField
-            label="Content"
-            variant="outlined"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-            rows={4}
-          /> */}
+
           <Button
             sx={{ fontWeight: "bold", marginTop: "1rem" }}
             variant="contained"

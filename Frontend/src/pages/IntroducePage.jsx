@@ -1,5 +1,4 @@
 import ProfileCard from "../components/items/ProfileCard";
-import items from "../components/data/employee.json";
 import { useEffect, useState } from "react";
 import employeeApi from "../api/employeeApi";
 const IntroducePage = () => {
@@ -9,9 +8,7 @@ const IntroducePage = () => {
       try {
         const res = await employeeApi.getAllEmployee();
         setEmployees(res.data.data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) { /* empty */ }
     };
     fetchData();
   }, []);
